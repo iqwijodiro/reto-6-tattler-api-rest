@@ -109,6 +109,30 @@ const getRestaurants = async (req, res, next) => {
         next(error)
     }
 }
+// Get all restaurants by nearest distance
+const getNearRestaurants = async (req, res, next) => {
+    const options = {
+        location: {
+            $nearSphere: {
+                $geometry: {
+                    type: "Point",
+                    coordinates: model.address.coord
+                },
+                $maxDistance: 5 * 1609.34 // 1609.34 mts per mile =
+            }
+        }
+    }
+    try {
+        const data = await model.find(options);
+        return res.status(200).json({
+            success: true,
+            message: 'All restaurants retrieved, ordered by distance',
+            data: data
+        })
+    } catch (error) {
+        next(error)
+    }
+}
 
 // update restaurants
 const updateRestaurant = async (req, res, next) => {
