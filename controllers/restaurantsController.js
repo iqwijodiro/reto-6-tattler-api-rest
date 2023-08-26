@@ -116,13 +116,14 @@ const getNearRestaurants = async (req, res, next) => {
             $nearSphere: {
                 $geometry: {
                     type: "Point",
-                    coordinates: model.address.coord
+                    coordinates: [latitude, altitude]
                 },
                 $maxDistance: 5 * 1609.34 // 1609.34 mts per mile =
             }
         }
     }
     try {
+        // console.log(model.name);
         const data = await model.find(options);
         return res.status(200).json({
             success: true,
@@ -178,6 +179,7 @@ module.exports = {
                     getRestaurantByFood,
                     getRestaurantByNameAndFood,
                     getRestaurants,
+                    getNearRestaurants,
                     updateRestaurant,
                     deleteRestaurant 
                 }
