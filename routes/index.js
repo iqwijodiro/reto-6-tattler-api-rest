@@ -5,6 +5,7 @@ const { createRestaurant,
         getRestaurantByFood,
         getRestaurantByNameAndFood, 
         getRestaurants,
+        getNearRestaurants,
         updateRestaurant,
         deleteRestaurant
     } = require('../controllers/restaurantsController');
@@ -17,6 +18,7 @@ router.get('/restaurants/name', getRestaurantByName)
 router.get('/restaurants/cuisine', getRestaurantByFood)
 router.get('/restaurants/filterBy', getRestaurantByNameAndFood)
 router.get('/restaurants', getRestaurants)
+router.get('/restaurants/near', getNearRestaurants)
 router.patch('/restaurant/update/:id', updateRestaurant)
 router.delete('/restaurant/delete/:id', deleteRestaurant)
 
