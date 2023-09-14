@@ -123,7 +123,6 @@ const getNearRestaurants = async (req, res, next) => {
         }
     }
     try {
-        // console.log(model.name);
         const data = await model.find(options);
         return res.status(200).json({
             success: true,
